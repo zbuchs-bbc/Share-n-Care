@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+	<h:body>
+		<link href="webjars/bootstrap/3.3.5/css/bootstrap.min.css"
+			rel="stylesheet" type="text/css" />
+		<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+		<link href="webjars/Hover/2.0.2/css/hover.css" rel="stylesheet"
+			type="text/css" />
+
+		<!-- Titel -->
+		<h3>Share &amp; Care</h3>
+
+		<!-- Titelbild -->
+		<div class="titelbild">
+			<img id="titelbildaboutus" src="ressources/santorini.jpg"></img>
+		</div>
+
+		<!-- Navigation -->
+		<b:navBar inverse="false">
+			<b:navbarLinks class="navbar-form navbar-left">
+
+				<!-- Bell Icon -->
+				<h:form class="navbar-form navbar-left">
+					<a href="#openModal">
+						<button type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-bell"></span>
+						</button>
+					</a>
+				</h:form>
+
+				<!-- Notification -->
+				<div id="openModal" class="modalDialog">
+					<div>
+						<a href="#close" title="Close" class="close">X</a>
+						<!-- Input Title -->
+						<div class="panel panel-default">
+							<!-- Default panel contents -->
+							<div class="panel-heading">Notification</div>
+
+							<!-- Input -->
+							<div class="panel-body">
+								<ui:repeat var="article"
+									value="#{notificationController.articles}">
+									<!-- Messages -->
+									<div class="alert alert-info" role="alert">
+										<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+										#{article.timestamp} <br /> You have been marked in an
+										article by #{article.user.username}
+									</div>
+								</ui:repeat>
+							</div>
+
+							<!-- Notification Footer -->
+							<div class="panel-footer">
+								<img id="logo" src="ressources/logo.png"></img>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Menu -->
+				<b:navLink value="Home" outcome="home"></b:navLink>
+				<b:navLink value="Profile" outcome="profile"></b:navLink>
+				<b:navLink value="About Us" outcome="aboutus"></b:navLink>
+
+				<!-- show username -->
+				<h:form class="navbar-form navbar-right">
+					<span id="userspan2" class="glyphicon glyphicon-user"></span>
+					#{user.username}
+					
+						<!-- logout button -->
+					<h:commandButton action="#{logoutController.logout}" value="logout"
+						type="submit" class="btn btn-success"></h:commandButton>
+				</h:form>
+			</b:navbarLinks>
+		</b:navBar>
+
+		<!-- Input Title -->
+		<div class="panel panel-default">
+			<!-- Default panel contents -->
+			<div class="panel-heading">About Us</div>
+
+			<!-- Input -->
+			<div class="panel-body">
+				<p>Share your best moments, adventures, holidays and much more
+					on this page. And dont forget to tag your friends and start a
+					conversation through a comment.</p>
+
+				<br /><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+				diam nonumy eirmod tempor invidunt ut labore et dolore magna
+				aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
+				duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+				sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+				consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+				ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+				eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+				gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p> 
+			</div>
+
+
+			<!-- Footer -->
+			<div class="panel-footer">
+				<img id="logo" src="ressources/logo.png"></img>
+			</div>
+		</div>
+	</h:body>
+</ui:composition>
